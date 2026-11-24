@@ -68,6 +68,32 @@ namespace BookingSystem.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ServiceTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Duration = new TimeSpan(0, 0, 30, 0, 0),
+                            Name = "Klippning"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Duration = new TimeSpan(0, 1, 30, 0, 0),
+                            Name = "Hårfärgning"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Duration = new TimeSpan(0, 0, 15, 0, 0),
+                            Name = "Skäggtrimning"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Duration = new TimeSpan(0, 0, 45, 0, 0),
+                            Name = "Styling"
+                        });
                 });
 
             modelBuilder.Entity("BookingSystem.Api.Models.Booking", b =>
