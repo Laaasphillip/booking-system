@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookingSystem.Api.Data
 {
-    public class BookingDbContext : DbContext
+    public class BookingSystemDbContext : DbContext
     {
-        public BookingDbContext(DbContextOptions<BookingDbContext> options) : base(options)
+        public BookingSystemDbContext(DbContextOptions<BookingSystemDbContext> options) : base(options)
         {
 
         }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookingSystem.Api.Migrations
 {
-    [DbContext(typeof(BookingDbContext))]
+    [DbContext(typeof(BookingSystemDbContext))]
     [Migration("20261124213027_SeedServiceTypes")]
     partial class SeedServiceTypes
     {
