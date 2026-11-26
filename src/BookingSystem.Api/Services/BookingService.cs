@@ -1,4 +1,5 @@
 ﻿using BookingSystem.Api.Data;
+using BookingSystem.Api.Models;
 
 namespace BookingSystem.Api.Services
 {
@@ -6,6 +7,7 @@ namespace BookingSystem.Api.Services
     {
         private static readonly TimeSpan BufferTime = TimeSpan.FromMinutes(15);
         private readonly BookingSystemDbContext _context;
+        
 
         public BookingService(BookingSystemDbContext context)
         {
@@ -16,6 +18,11 @@ namespace BookingSystem.Api.Services
         {
             var bookings = _context.Bookings.ToList();
 
+            return (IsBookingSlotFree(startTime, endTime, bookings));
+        }
+
+        public static bool IsBookingSlotFree(DateTime startTime, DateTime endTime, List<Booking> bookings)
+        {
             foreach (var booking in bookings)
             {
                 if (booking.EndTime + BufferTime > startTime && booking.StartTime < endTime + BufferTime)
