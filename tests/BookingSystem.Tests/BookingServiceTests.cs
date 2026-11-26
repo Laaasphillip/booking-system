@@ -23,6 +23,24 @@ namespace BookingSystem.Tests
             var newStartTime = new DateTime(2026, 11, 27, 15, 0, 0);
             var newEndTime = new DateTime(2026, 11, 27, 15, 30, 0);
 
+            Assert.False(BookingService.IsBookingSlotFree(newStartTime, newEndTime, bookings));
+        }
+
+        [Fact]
+        public void IsBookingSlotFree_NoOverlap_ReturnsTrue()
+        {
+            var existingBooking = new Booking
+            {
+                StartTime = new DateTime(2026, 11, 27, 14, 0, 0),
+                EndTime = new DateTime(2026, 11, 27, 15, 30, 0)
+            };
+
+            List<Booking> bookings = new List<Booking> { existingBooking };
+
+
+            var newStartTime = new DateTime(2026, 11, 27, 15, 45, 0);
+            var newEndTime = new DateTime(2026, 11, 27, 16, 15, 0);
+
 
             Assert.True(BookingService.IsBookingSlotFree(newStartTime, newEndTime, bookings));
         }
