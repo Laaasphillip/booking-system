@@ -1,6 +1,7 @@
 ﻿using BookingSystem.Api.Data;
 using BookingSystem.Api.Dtos;
 using BookingSystem.Api.Models;
+using BookingSystem.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookingSystem.Api.Controllers
@@ -10,9 +11,11 @@ namespace BookingSystem.Api.Controllers
     public class BookingsController : ControllerBase
     {
         private readonly BookingSystemDbContext _context;
-        public BookingsController(BookingSystemDbContext context)
+        private readonly BookingService _bookingService;
+        public BookingsController(BookingSystemDbContext context, BookingService bookingService)
         {
             _context = context;
+            _bookingService = bookingService;
         }
 
         [HttpGet]
@@ -44,6 +47,11 @@ namespace BookingSystem.Api.Controllers
             }
 
             var endTime = request.StartTime + serviceType.Duration;
+
+            if (!_bookingService.IsBookingAvailable(request.StartTime, endTime))
+            {
+                return Conflict("Du har valt en tid som krockar med en annan!");
+            }
 
             var booking = new Booking
             {

@@ -13,4 +13,38 @@ Content-Type: application/json
   "customerName": "Anna",
   "startTime": "2026-11-27T14:00:00"
 }
+
+###
+
+POST http://localhost:5235/api/bookings
+Content-Type: application/json
+
+{
+  "serviceTypeId": 1,
+  "customerName": "Test1",
+  "startTime": "2026-11-27T15:00:00"
+}
+
+###
+
+POST http://localhost:5235/api/bookings
+Content-Type: application/json
+
+{
+  "serviceTypeId": 1,
+  "customerName": "Test2",
+  "startTime": "2026-11-27T15:45:00"
+}
+
+###
+
+POST http://localhost:5235/api/bookings
+Content-Type: application/json
+
+{
+  "serviceTypeId": 1,
+  "customerName": "Test3",
+  "startTime": "2026-11-27T13:30:00"
+}
+
 ###
